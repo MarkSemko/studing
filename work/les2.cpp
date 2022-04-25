@@ -118,7 +118,7 @@ int main () {
 				cin >> r1 >> h;
 				s = 2 * pi * r1 * (h + r1);
 				v = pi * pow(r1, 2) * h;
-				cout << "The square and volume of this cylindre is: " << s << v << endl;
+				cout << "The square and volume of this cylindre is: " << s << ", " << v << endl;
 				break;
 				
 			case 6:
@@ -126,7 +126,7 @@ int main () {
 				cin >> a >> b >> h;
 				s = 2 * (a * b + a * h + b * h);
 				v = a * b * h;
-				cout << "The square and volume of this parallelepiped is: " << s << v << endl;
+				cout << "The square and volume of this parallelepiped is: " << s << ", " << v << endl;
 				break;
 				
 			case 7:
@@ -134,7 +134,7 @@ int main () {
 				cin >> r1;
 				s = 4 * pi * pow(r1, 2);
 				v = 0.75 * pi * pow(r1, 3);
-				cout << "The square and volume of this sphere is: " << s << v << endl;
+				cout << "The square and volume of this sphere is: " << s << ", " << v << endl;
 				break;
 			
 			case 8:
@@ -147,7 +147,7 @@ int main () {
 				}
 				s = 2 * pi * (r1 * h + pow(r1, 2) - pow(r2, 2));
 				v = pi * h * (pow(r1, 2) - pow(r2, 2));
-				cout << "The square and volume of this cylindre is: " << s << v << endl;
+				cout << "The square and volume of this cylindre is: " << s << ", " << v << endl;
 				break;
 				
 			case 9:
@@ -155,7 +155,7 @@ int main () {
 				cin >> r1 >> h;
 				s = pi * r1 * (sqrt(pow(r1, 2) + pow(h, 2)) + r1);
 				v = pi * pow(r1, 2) * h / 3;
-				cout << "The square and volume of this cone is: " << s << v << endl;
+				cout << "The square and volume of this cone is: " << s << ", " << v << endl;
 				break;
 				
 			case 0:
@@ -164,35 +164,26 @@ int main () {
 		}
 	}
 	
-	char electric[80];
-	bool compare;
+	char buf[80];
 	
 	while (true) {
-	
-		cout << "\nEnter what electric data we know (I, U or R): ";
-		gets(electric);
+		
+		cout << "Enter what electric data we know (I, U or R): ";
+		fflush(stdin); //очищаем буффер ввода
+		char *electric = fgets (buf, 80, stdin);
 		cout << electric;
-		int z;
+		int z = 0;
 		for (int i = 0; i < 10; i++) {
-			compare = strcmp(electric[i], "I");
-			if (compare) {
+			if (electric[i] == 'I') {
 				z += 100;
 			}
-			else {
-				compare = strcmp (electric[i], "U");
-				if (compare) {
-					z += 10;
-				}
-				else {
-					compare = strcmp (electric[i], "R");
-					if (compare) {
-						z += 1;
-					}
-				}
+			if (electric[i] == 'U') {
+				z += 10;
+			}
+			if (electric[i] == 'R') {
+				z += 1;
 			}
 		}
-		
-		
 		
 		float I, U, R;
 		
@@ -216,24 +207,16 @@ int main () {
 				cout << "\nFor " << I << "A " << "and " << R << "Om " << "U = " << U << "V" << endl;
 				return 0;
 				
-			case 011:
+			case 11:
 				cout << "Enter U and R: ";
 				cin >> U >> R;
 				I = U/R;
 				cout << "\nFor " << U << "V " << "and " << R << "Om " << "I = " << I << "A" << endl;
 				return 0;
 				
-			case 100:
+			default:
 				cout << "\nNot full data. Try again." << endl;
-				break;
 				
-			case 010:
-				cout << "\nNot full data. Try again." << endl;
-				break;
-				
-			case 001:
-				cout << "\nNot full data. Try again." << endl;
-				break;
 		}
 		
 	}
